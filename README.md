@@ -24,29 +24,29 @@ $ cargo build --release
 
 **vim-plug**
 ```vim
-Plug 'you/scratch-shell.vim'
+Plug 'foxerlot/scratch-shell.vim'
 ```
 
 **packer.nvim**
 ```lua
-use 'you/scratch-shell.vim'
+use 'foxerlot/scratch-shell.vim'
 ```
 
 **Lazy.nvim**
 ```lua
-{ 'you/scratch-shell.vim' }
+{ 'foxerlot/scratch-shell.vim' }
 ```
 
 **Manual (Vim)**
 ```sh
 mkdir -p ~/.vim/pack/plugins/start
-git clone https://github.com/you/scratch-shell.vim ~/.vim/pack/plugins/start/scratch-shell.vim
+git clone https://github.com/foxerlot/scratch-shell.vim ~/.vim/pack/plugins/start/scratch-shell.vim
 ```
 
 **Manual (Neovim)**
 ```sh
 mkdir -p ~/.local/share/nvim/site/pack/plugins/start
-git clone https://github.com/you/scratch-shell.vim ~/.local/share/nvim/site/pack/plugins/start/scratch-shell.vim
+git clone https://github.com/foxerlot/scratch-shell.vim ~/.local/share/nvim/site/pack/plugins/start/scratch-shell.vim
 ```
 
 ## Commands
