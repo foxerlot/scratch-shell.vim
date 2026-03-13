@@ -1,0 +1,103 @@
+*scratch_shell.txt*  Run shell commands and capture output in a scratch buffer.
+
+                                                            *scratch-shell*
+
+Author:   You
+License:  MIT
+Repo:     https://github.com/you/scratch-shell.vim
+
+==============================================================================
+CONTENTS                                              *scratch-shell-contents*
+
+  1. Introduction .......................... |scratch-shell-intro|
+  2. Commands .............................. |scratch-shell-commands|
+  3. Functions ............................. |scratch-shell-functions|
+  4. Configuration ......................... |scratch-shell-config|
+  5. Suggested Mappings .................... |scratch-shell-mappings|
+
+==============================================================================
+1. INTRODUCTION                                          *scratch-shell-intro*
+
+scratch-shell.vim sends shell command output to a reusable scratch buffer
+instead of Vim's built-in command output overlay. The buffer is `nofile` and
+`noswapfile`, so Vim will never ask you to save it.
+
+==============================================================================
+2. COMMANDS                                           *scratch-shell-commands*
+
+:Scratch {cmd}                                                    *:Scratch*
+    Run {cmd} in a shell and show the combined stdout/stderr output in the
+    scratch buffer. Tab-completion works for shell commands.
+
+:ScratchMake                                                  *:ScratchMake*
+    Run the current value of 'makeprg'. Falls back to `make` if 'makeprg'
+    is empty.
+
+:ScratchRepeat                                              *:ScratchRepeat*
+    Re-run the last command that was passed to |:Scratch| or |:ScratchMake|.
+
+:ScratchPrompt [prefix]                                     *:ScratchPrompt*
+    Open an interactive prompt asking for a command. If [prefix] is given it
+    is prepended with ` && ` before the typed command.
+
+    Example — prompt that runs inside a parent directory: >
+        :ScratchPrompt cd ..
+<
+
+==============================================================================
+3. FUNCTIONS                                         *scratch-shell-functions*
+
+scratch_shell#Run({cmd})                                *scratch_shell#Run()*
+    Core function. Runs {cmd} and writes output to the scratch buffer.
+    Called by all commands; can be called directly from your own mappings.
+
+scratch_shell#Prompt([{prefix}])                     *scratch_shell#Prompt()*
+    Opens `input()` prompt, optionally prepending {prefix} to the result.
+
+scratch_shell#Repeat()                               *scratch_shell#Repeat()*
+    Re-runs the last command passed to |scratch_shell#Run()|.
+
+==============================================================================
+4. CONFIGURATION                                        *scratch-shell-config*
+
+All options can be set in your |vimrc| before the plugin loads.
+
+g:scratch_shell_position                          *g:scratch_shell_position*
+    Where the scratch split is opened. Any value accepted by a Vim split
+    modifier is valid.
+    Default: `'botright'`
+    Examples: `'topleft'`, `'vertical botright'`, `'vertical topleft'`
+
+g:scratch_shell_height                              *g:scratch_shell_height*
+    Height of the scratch window in lines. Ignored for vertical splits.
+    Default: `15`
+
+g:scratch_shell_bufname                            *g:scratch_shell_bufname*
+    Name given to the scratch buffer (visible in `:ls`).
+    Default: `'__ScratchShell__'`
+
+g:scratch_shell_focus                                *g:scratch_shell_focus*
+    When set to `1`, the cursor moves into the scratch window after each
+    command runs. When `0`, focus returns to the previous window.
+    Default: `0`
+
+==============================================================================
+5. SUGGESTED MAPPINGS                                  *scratch-shell-mappings*
+
+Add any of these to your |vimrc|: >
+
+    " Run a command via prompt
+    nnoremap <leader>s :ScratchPrompt<CR>
+
+    " Prompt with 'cd ..' prepended
+    nnoremap <leader>cm :ScratchPrompt cd ..<CR>
+
+    " Run makeprg
+    nnoremap <leader>m :ScratchMake<CR>
+
+    " Repeat last command
+    nnoremap <leader>r :ScratchRepeat<CR>
+<
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
