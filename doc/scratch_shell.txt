@@ -2,9 +2,9 @@
 
                                                             *scratch-shell*
 
-Author:   You
-License:  MIT
-Repo:     https://github.com/you/scratch-shell.vim
+Author:   Foxerlot
+License:  GNU gpl v3
+Repo:     https://github.com/foxerlot/scratch-shell.vim
 
 ==============================================================================
 CONTENTS                                              *scratch-shell-contents*
