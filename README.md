@@ -3,10 +3,11 @@
 Run shell commands and capture their output in a reusable scratch buffer — the Emacs-style experience, in Vim.
 
 ```
-$ cargo build --release
+$ cc hello.c -o hello && ./hello
 ────────────────────────────────────────────────────────────
-   Compiling scratch-shell v0.1.0
-    Finished release [optimized] target(s) in 2.41s
+
+Hello, scratch-shell!
+
 ────────────────────────────────────────────────────────────
 ✓ exited 0
 ```
