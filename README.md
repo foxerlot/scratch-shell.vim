@@ -104,6 +104,6 @@ let g:scratch_shell_focus = 0
 
 After installation, run `:helptags ALL` once to index the docs, then:
 
-```vim
+```
 :help scratch-shell
 ```
