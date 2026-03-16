@@ -1,3 +1,5 @@
+![lang](https://img.shields.io/badge/LANG-Vim_Script-blue?style=flat-square)
+![license](https://img.shields.io/badge/LICENSE-GPL_V3-orange?style=flat-square)
 # scratch-shell.vim
 
 Run shell commands and capture their output in a reusable scratch buffer — the Emacs-style experience, in Vim.
@@ -57,27 +59,29 @@ git clone https://github.com/foxerlot/scratch-shell.vim ~/.local/share/nvim/site
 | `:Scratch <cmd>` | Run a shell command and show output in the scratch buffer |
 | `:ScratchMake` | Run `makeprg` (falls back to `make`) |
 | `:ScratchRepeat` | Re-run the last command |
+| `:ScratchEdit` | Edit the last command in a prompt, then run it |
 | `:ScratchPrompt [prefix]` | Open an interactive prompt, optionally prepending a prefix |
 
-## Mappings
-
-No mappings are set by default. Add whichever of these you like to your `vimrc`:
+## Example Configuration
 
 ```vim
 " Prompt for a command
 nnoremap <leader>s :ScratchPrompt<CR>
 
 " Prompt with 'cd ..' automatically prepended
-nnoremap <leader>cm :ScratchPrompt cd ..<CR>
+nnoremap <leader>c :ScratchPrompt cd ..<CR>
 
 " Run makeprg / make
 nnoremap <leader>m :ScratchMake<CR>
 
 " Repeat the last command
 nnoremap <leader>r :ScratchRepeat<CR>
+
+" Edit the last command before re-running it
+nnoremap <leader>e :ScratchEdit<CR>
 ```
 
-## Configuration
+## Options
 
 All options are optional. Set them in your `vimrc` before the plugin loads.
 
@@ -96,21 +100,6 @@ let g:scratch_shell_bufname = '__ScratchShell__'
 let g:scratch_shell_focus = 0
 ```
 
-## Advanced usage
-
-The public API functions can be called directly from your own mappings or scripts:
-
-```vim
-" Call the runner directly
-call scratch_shell#Run('npm test')
-
-" Prompt with a custom prefix
-call scratch_shell#Prompt('cd ~/myproject')
-
-" Re-run last command
-call scratch_shell#Repeat()
-```
-
 ## Help
 
 After installation, run `:helptags ALL` once to index the docs, then:
@@ -118,7 +107,3 @@ After installation, run `:helptags ALL` once to index the docs, then:
 ```vim
 :help scratch-shell
 ```
-
-## License
-
-MIT

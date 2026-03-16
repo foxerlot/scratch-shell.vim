@@ -22,5 +22,8 @@ command! ScratchMake call scratch_shell#Run(empty(&makeprg) ? 'make' : expand(&m
 " Re-run the last command
 command! ScratchRepeat call scratch_shell#Repeat()
 
+" Edit the last command in a prompt, then run it
+command! ScratchEdit call scratch_shell#Edit()
+
 " Open a prompt (optional prefix prepended with &&)
 command! -nargs=? ScratchPrompt call scratch_shell#Prompt(<q-args>)

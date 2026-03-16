@@ -52,3 +52,14 @@ function! scratch_shell#Repeat() abort
     endif
     call scratch_shell#Run(s:last_cmd)
 endfunction
+
+function! scratch_shell#Edit() abort
+  if !exists('s:last_cmd') || empty(s:last_cmd)
+    call scratch_shell#Prompt()
+    return
+  endif
+
+  let l:cmd = input('Edit command: ', s:last_cmd, 'shellcmd')
+  if empty(l:cmd) | return | endif
+  call scratch_shell#Run(l:cmd)
+endfunction
