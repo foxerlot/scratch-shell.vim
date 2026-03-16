@@ -11,13 +11,16 @@ function! scratch_shell#Run(cmd) abort
     let bufnr = bufnr(g:scratch_shell_bufname)
     let winid = bufnr != -1 ? bufwinid(bufnr) : -1
 
-    if winid == -1
+    if winid != -1
+        call win_gotoid(winid)
+    elseif bufnr != -1
+        execute g:scratch_shell_position . ' ' . g:scratch_shell_height . 'split'
+        execute 'buffer ' . bufnr
+    else
         execute g:scratch_shell_position . ' ' . g:scratch_shell_height . 'new'
-        execute 'silent! file ' . g:scratch_shell_bufname
+        execute 'file ' . g:scratch_shell_bufname
         setlocal buftype=nofile bufhidden=hide noswapfile nobuflisted
         setlocal filetype=scratch_shell_output
-    else
-        call win_gotoid(winid)
     endif
 
     setlocal modifiable
